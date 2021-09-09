@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define gc getchar_unlocked
-#define fo(i,n) for(int i=1;i<=n;i++)
+#define fo(i,n) for(int i=0;i<n;i++)
 #define Fo(i,k,n) for(int i=k;k<n?i<n:i>n;k<n?i+=1:i-=1)
 #define ll long long
 #define si(x)	scanf("%d",&x)
@@ -42,20 +42,36 @@ const int mod = 1'000'000'007;
 const int N = 3e5, M = N;
 //=======================
 
-//vi g[N];
-//int a[N];
+int subarraySum(int arr[],int n)
+{
+    int currentSum=0;
+    int largest=0;
 
+   fo(i,n) 
+   {
+        currentSum  += arr[i];
+        if(currentSum < 0)
+          currentSum =0;
+
+        largest = max(largest,currentSum);  
+   }
+
+   return largest;
+
+
+}
 
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-    int t = 1;
-    cin >> t;
-    while(t--) {
-       cout << "hello" << endl;
-    }
+    int arr[] ={ -2,3,4,-1,5,-12,6,1,3};
+    int n = sizeof(arr)/sizeof(int);
+
+    cout << "largest subarray sum =  " << subarraySum(arr,n) << endl;
+
+
 
     return 0;
 }
