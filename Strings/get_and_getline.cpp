@@ -10,6 +10,7 @@ using namespace std;
 #define pi(x)	printf("%d\n",x)
 #define pl(x)	printf("%lld\n",x)
 #define ps(s)	printf("%s\n",s)
+#define el  "\n"
 #define deb(x) cout << #x << "=" << x << endl
 #define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
 #define pb push_back
@@ -40,70 +41,45 @@ void dfs(int u, int par);
 
 const int mod = 1'000'000'007;
 const int N = 3e5, M = N;
+//=======================
 
+//vi g[N];
+//int a[N];
 
-void printArray(int arr[],int n)
-{   
-     fo(i,n) cout << arr[i] << "  ";
-     cout << endl; 
-}
-
-
-void countingSort(int arr[],int n)
-{
-   int largest=arr[0];
-
-   fo(i,n) largest = max(largest,arr[i]);
-   
-  
-
-   vector<int>freq (largest+1,0);
-   
- //cout <<   sizeof(freq) << endl;
-
-   fo(i,n)
-   freq[arr[i]]++;
-
-int j=0;
-   Fo(i,0,largest+1)
-   {
-      
-     
-      while(freq[i] > 0)
-      {
-         arr[j]=i;
-        
-         j++;
-         freq[i]--;
-      }
-
-   }
-
-
-  return ;
-
-
-
-
-}
 
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     srand(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-    int arr[100],n;
+   char sentence[100];
+   int length=0;
+   char temp =cin.get();
+
 
     
-    cout << "Enter size of array" << endl;
-    cin >> n;
+    while(temp!='#')
+     {
+         if(length<=99)
+       {
+        sentence[length++] = temp;
+        temp =cin.get();
+       }
+     }
+    
+    sentence[length]='\0';
 
-    cout << "Enter elements" << endl;
+    cout << sentence << el;
 
-    fo(i,n) cin >> arr[i];
 
-    countingSort(arr,n);
-    printArray(arr,n);
+   cout << "second method" << el;
+
+ 
+    
+   cin.getline(sentence,100,'#');
+
+   cout <<sentence << el;
+
 
     return 0;
 }
