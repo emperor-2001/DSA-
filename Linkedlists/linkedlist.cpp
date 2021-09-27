@@ -66,6 +66,11 @@ class List
     public:
        List(): head(NULL), tail(NULL) {};
      
+        Node* begin()
+        {
+            return head;
+        }
+        
        void push_front(int n)
        {
            if(head == NULL)
@@ -113,6 +118,70 @@ class List
 
            cout << el; 
        }
+
+       void reverse()
+       {
+           Node* prev = NULL;
+           Node* tmp = head;
+           Node* tmp1;
+
+           while(tmp!= NULL)
+           {
+
+               tmp1 = tmp->next;
+               tmp->next = prev;
+                prev = tmp;
+               tmp = tmp1;
+           }
+           head = prev;
+       }
+
+       void insert(int data,int pos)
+       {
+           if(pos == 0)
+               push_back(data);
+           else
+           {
+               Node* s = new Node(data);
+               Node* tmp = head;
+               int x = 0;
+               while(x!= pos-1)
+               {
+                   tmp = tmp->next;
+                   x++;
+               }
+               s->next = tmp->next;
+               tmp->next = s; 
+
+
+           }
+       }
+
+       int search(int d)
+       {
+           Node* tmp = head;
+           int x=0;
+           while(tmp!= NULL)
+           {
+              if(tmp->data == d)
+                return x;
+              tmp = tmp->next;
+              x++;  
+           } 
+
+           return -1;
+       }
+
+       bool searchrec(Node* head,int d)
+       {
+           if(head== NULL)
+             return false;
+
+           if(head->data == d) 
+             return true;
+            
+              return searchrec(head->next,d);   
+       };
        
 
 };
@@ -131,7 +200,7 @@ int main() {
     int n,x;
     cin >> n;
 
-   
+    //  l1.reverse();
     while(n--)
     {
        cin >> x;
@@ -140,6 +209,28 @@ int main() {
     }
 
     l1.print();
+    // l1.reverse();
+    // l1.print();
+
+    l1.insert(4,2);
+
+    l1.print();
+
+    int g;
+    cin >> g;
+
+    // int ans = l1.search(g);
+    // if( ans == -1)
+    // cout << "NOT FOUND" << el;
+
+    // else
+    // cout << "FOUND AT INDEX= " <<  ans << el;
+
+    if(l1.searchrec(l1.begin(),g))
+     cout << "FOUND" << el;
+    else
+       cout << "NOT FOUND" << el;
+
 
 
 
