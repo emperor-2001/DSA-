@@ -71,7 +71,7 @@ class List
            if(head == NULL)
            {
                Node* s = new Node(n);
-               s-> next = head;
+            //    s-> next = head;  no need of this
                head = s;
                tail = s;
            }
@@ -81,6 +81,24 @@ class List
               Node* s = new Node(n);
                s-> next = head;
                head = s; 
+           }
+       }
+
+       void push_back(int n)
+       {
+           if(tail== NULL)
+           {
+               Node* s = new Node(n);
+            //    s-> next = tail;  no need of this
+               tail = s;
+               head = s;
+           }
+           else
+           {
+             Node* s = new Node(n);
+               tail-> next = s;
+            //    s-> next = NULL;  no need of this
+               tail = s; 
            }
        }
 
@@ -117,7 +135,7 @@ int main() {
     while(n--)
     {
        cin >> x;
-       l1.push_front(x);
+       l1.push_back(x);
        
     }
 
