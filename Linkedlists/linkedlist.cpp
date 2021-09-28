@@ -54,6 +54,17 @@ class Node
        Node(int n): data(n) , next(NULL) {};
        Node(){};
        friend class List;
+       ~Node()
+       {
+      
+           if(next!= NULL)
+           {
+            //    cout << "data= " << data << el;
+               delete next;
+              
+           }
+            cout << "deleted element node has data= " << data << el;
+       }
       
 };
 
@@ -94,7 +105,7 @@ class List
            if(tail== NULL)
            {
                Node* s = new Node(n);
-            //    s-> next = tail;  no need of this
+               s-> next = tail; // no need of this
                tail = s;
                head = s;
            }
@@ -102,7 +113,7 @@ class List
            {
              Node* s = new Node(n);
                tail-> next = s;
-            //    s-> next = NULL;  no need of this
+               s-> next = NULL; // no need of this
                tail = s; 
            }
        }
@@ -183,6 +194,74 @@ class List
               return searchrec(head->next,d);   
        };
        
+       void pop_front()
+       {
+           if(head!= NULL)
+           {
+             Node* headnew = head;
+            
+             head = head->next;
+               headnew-> next = NULL;
+              delete headnew;
+            
+           }
+          
+
+       };
+      void remove(int pos)
+      {
+          Node* tmp = head;
+          int x=0;
+
+          while(x!= pos-1)
+          {
+              tmp = tmp->next;
+              x++;
+          }
+         Node* tmp1 = tmp->next;
+         tmp->next = tmp1->next;
+         tmp1->next= NULL;
+         delete tmp1; 
+      }
+
+      void pop_back()
+      {
+          if(tail!= NULL)
+          {
+
+              if(head == tail)
+              {
+                  delete head;
+                  head = tail = NULL;
+              }
+              else
+              {
+              Node* tmp = tail;
+              Node* tmp1 = head;
+
+              while(tmp1->next!= tmp)
+                 tmp1 = tmp1->next;
+
+               tail = tmp1;
+               tail->next = NULL;
+                 
+              tmp->next = NULL;
+              delete tmp;
+              }
+
+          }
+      }
+     ~List()
+     {
+         if(head!= NULL)
+          {
+            
+              delete head;
+              head = NULL;
+          }
+         
+          
+     };
 
 };
 
@@ -208,16 +287,23 @@ int main() {
        
     }
 
-    l1.print();
+     l1.print();
+    //  l1.pop_front();
+   
+     l1.remove(2);
+       l1.print();
+
+       l1.pop_back();
+       l1.print();
     // l1.reverse();
     // l1.print();
 
-    l1.insert(4,2);
+    // l1.insert(4,2);
 
-    l1.print();
+    // l1.print();
 
-    int g;
-    cin >> g;
+    // int g;
+    // cin >> g;
 
     // int ans = l1.search(g);
     // if( ans == -1)
@@ -226,10 +312,10 @@ int main() {
     // else
     // cout << "FOUND AT INDEX= " <<  ans << el;
 
-    if(l1.searchrec(l1.begin(),g))
-     cout << "FOUND" << el;
-    else
-       cout << "NOT FOUND" << el;
+    // if(l1.searchrec(l1.begin(),g))
+    //  cout << "FOUND" << el;
+    // else
+    //    cout << "NOT FOUND" << el;
 
 
 
