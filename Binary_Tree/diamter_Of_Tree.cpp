@@ -100,7 +100,7 @@ int diameter(Node* root)
       int d2 = diameter(root->right);
 
       int x =  d1 > d ? (d1 > d2 ? d1 : d2 ) : (d > d2 ? d : d2) ;
-      return x-1;
+      return x;
 
 
 };
