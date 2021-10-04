@@ -109,7 +109,6 @@ int main() {
 
     Node* root = BinaryTree();
     preorder(root);
-
     return 0;
 }
 
