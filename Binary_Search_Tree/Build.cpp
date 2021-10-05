@@ -65,13 +65,16 @@ Node* insert(Node* root,int key)
        return  new Node(key);
       
        
-     else if(key <= root->key)
+     else if(key < root->data)
       root->left = insert(root->left,key);
       
 
 
-     else 
+     else if(key > root->data)
        root->right = insert(root->right,key);  
+       
+     else if(key == root->data)
+       return root;
       
 
       return root;
