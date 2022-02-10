@@ -6,22 +6,20 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    bool dfsHelper(int source , bool* visited ,int parent , vector<int> adj[])
+     bool dfsHelper(int source , bool* visited ,int parent , vector<int> adj[])
    {
        visited[source] = 1;
-        for(int i =0 ; i<adj[source].size() ; i++)
+        for(auto child : adj[source])
         {
-           if(!visited[adj[source][i]])
+           if(!visited[child])
            {
-               if(dfsHelper(adj[source][i], visited , source , adj))
+               if(dfsHelper(child, visited , source , adj))
                     return true;
            }
-           else if(visited[adj[source][i]] && parent!= adj[source][i])
+           else if(parent!= child)
                return true;
         }
         return false;
-
-
    }
     
     bool isCycle(int V, vector<int> adj[]) {
@@ -33,6 +31,7 @@ class Solution {
              
       return false;
     }
+
 };
 
 // { Driver Code Starts.
